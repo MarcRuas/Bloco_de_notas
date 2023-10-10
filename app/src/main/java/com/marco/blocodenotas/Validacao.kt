@@ -43,4 +43,20 @@ class Validacao(
             }
         }
     }
+
+    fun atualizarNota(
+        uid: String,
+        titulo: String,
+        anotacao: String,
+        context: Context
+    ): Boolean {
+        return if (titulo.isEmpty() || anotacao.isEmpty()) {
+            false
+        } else {
+            notasDao = AppDatabase.getIntance(context).notasDao()
+            notasDao.atualizar(id = uid.toInt(), novoTitulo = titulo, novaAnotacao = anotacao)
+            true
+        }
+    }
+
 }

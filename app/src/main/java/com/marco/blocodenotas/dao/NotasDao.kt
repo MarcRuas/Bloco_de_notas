@@ -13,6 +13,9 @@ interface NotasDao {
     @Query("SELECT * FROM tabela_notas ORDER BY titulo ASC")
     fun getNotas(): MutableList<Notas>
 
+    @Query("SELECT * FROM tabela_notas WHERE uid = :id")
+    fun getNotasSeparada(id: String): Notas?
+
     @Query("UPDATE tabela_notas SET titulo = :novoTitulo, anotacao = :novaAnotacao WHERE uid = :id")
     fun atualizar(id: Int, novoTitulo: String, novaAnotacao: String)
 

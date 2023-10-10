@@ -1,5 +1,6 @@
 package com.marco.blocodenotas.ui.components
 
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -21,17 +22,20 @@ fun TextFieldComponent(
     label: String,
     singleLine: Boolean
 ) {
+    val isDark = isSystemInDarkTheme()
+
     TextField(
         value = value,
         onValueChange = onValueChange,
         modifier = Modifier.fillMaxWidth().padding(20.dp),
         colors = TextFieldDefaults.textFieldColors(
-            cursorColor = White,
-            focusedLabelColor = White,
-            textColor = White,
-            unfocusedLabelColor = White,
-            focusedIndicatorColor = MaterialTheme.colorScheme.background,
-            unfocusedIndicatorColor = MaterialTheme.colorScheme.background
+            cursorColor = if (isDark) White else White,
+            focusedLabelColor = if (isDark) White else White,
+            textColor = if (isDark) White else White,
+            unfocusedLabelColor = if (isDark) White else White,
+            focusedIndicatorColor = MaterialTheme.colorScheme.primary,
+            unfocusedIndicatorColor = MaterialTheme.colorScheme.primary,
+            containerColor = MaterialTheme.colorScheme.secondary
         ),
         label = { Text(text = label)},
         singleLine = singleLine,
